@@ -1,0 +1,13 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+2024-21-10
+- All currently known pages are now added
+- All pages are mobile responsive
+- Notification window is now a Bootstrap modal
+- Removed any use of JavaScript besides Bootstrap's
+- To maintain image dimension, icons are replaced with font awesome icons
+- All modals added (Please read 'readme' file)
+- Added 'header' and 'footer' under 'partials' for good practice
+- Pages converted from .html to .php

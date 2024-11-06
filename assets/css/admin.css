@@ -1,0 +1,223 @@
+/* CSS FOR ADMIN SIDE! */
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/* SIDEBAR */
+.offcanvas-body, .offcanvas-header {
+    background-color: black;
+}
+
+.offcanvas-body ul {
+    border: none;
+}
+
+.offcanvas-body ul li {
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.offcanvas-body ul li a {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.offcanvas-body .sidebar-item {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.offcanvas-body .sidebar-item:hover {
+    background-color: rgba(207, 207, 207, 0.9);
+}
+
+.offcanvas .dropdown-item {
+    font-size: 1rem !important;
+    font-weight: normal !important;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.offcanvas .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* NOTIFICATION */
+#notification-modal .modal-header, .modal-body {
+    background-color: #D2D0D0EB;
+}
+
+@media (max-width: 575px) {
+    #notification-modal {
+        top: 4.3rem;
+    }
+}
+
+@media (max-width: 415px) {
+    #notification-modal .notif-content {
+        font-size: .9rem;
+    }
+}
+
+/* DASHBOARD */
+#dashboard .card {
+    background-color: #F6F6F6 !important;
+    border: none !important;
+    border-radius: 3px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#dashboard .content .btn {
+    border-radius: 8px;
+}
+
+@media (max-width: 767px) {
+    #dashboard .content .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    #dashboard .content .container .card {
+        margin: .5rem !important;
+        padding: .5rem !important;
+    }
+}
+
+/* INVENTORY */
+#inventory .card {
+    background-color: #F6F6F6 !important;
+    border: none !important;
+    border-radius: 3px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+
+.search-bar .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* PRODUCT DETAILS */
+#product-details .content .btn {
+    border-radius: 8px;
+}
+
+#product-details .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* EDIT & ADD PRODUCT DETAILS */
+#edit-details .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#edit-details .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+#add-product .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#add-product .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+/* EDIT MONTHLY QUOTA */
+#monthly-quota .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#monthly-quota .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+@media (max-width: 625px) {
+    #monthly-quota .content .container {
+        margin: .5rem !important;
+        padding: .5rem !important;
+    }
+}
+
+/* EDIT & ADD RETURNED ITEM */
+#edit-returned .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#edit-returned .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+#add-return .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+#add-return .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+/* RESTOCK */
+#restock .modal-content {
+    border-radius: 35px;
+}
+
+#restock .custom-modal .modal-body {
+    background-color: #FFFFFF;
+}
+
+#restock .form-control {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+}
+
+/* INVENTORY REPORT */
+#inventory-report .form-select {
+    border-radius: 10px;
+}
+
+/* FOR TABLES ONLY */
+.table {
+    overflow-y: auto !important;
+}
+
+.table th,
+.table td {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+}
+
+.table th:first-child,
+.table td:first-child {
+    border-left: 1px solid black
+}
+
+.table th:last-child,
+.table td:last-child {
+    border-right: 1px solid black
+}
+
+@media (max-width: 767px) {
+    .table thead, tbody {
+        font-size: .9rem !important;
+    }
+}
+
