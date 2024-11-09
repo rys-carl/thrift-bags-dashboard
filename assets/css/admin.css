@@ -108,9 +108,7 @@ body {
 }
 
 #product-details .form-control {
-    background-color: #F6F6F6;
     border-radius: 8px;
-    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* EDIT & ADD PRODUCT DETAILS */
@@ -185,6 +183,12 @@ body {
 #restock .form-control {
     background-color: #F6F6F6;
     border-radius: 8px;
+}
+
+@media (max-width: 424px) {
+    #pending-restock {
+        font-size: .9rem;
+    }
 }
 
 /* INVENTORY REPORT */

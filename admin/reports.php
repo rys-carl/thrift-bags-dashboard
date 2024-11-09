@@ -34,21 +34,31 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">PAYMENT ID</th>
                             <th scope="col">ORDER ID</th>
                             <th scope="col">ADMIN ID</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">ADMIN CONFIRMATION</th>
+                            <th scope="col">TRANSACTION TYPE</th>
                             <th scope="col">TOTAL AMOUNT</th>
                             <th scope="col">TRANSACTION DATE</th>
-                            <th scope="col">SETTLEMENT DATE</th>
-                            <th scope="col">DISPUTE RESOLVED BY</th>
-                            <th scope="col">VERIFIED BY</th>
+                            <th scope="col">REASON</th>
+                            <th scope="col">TRACKING NUMBER</th>
+                            <th scope="col">RETURN DATE</th>
+                            <th scope="col">REFUND METHOD</th>
+                            <th scope="col">REFUND REFERENCE NUMBER</th>
                         </tr>
                     </thead>
                     <tbody class="fw-light">
                         <tr>
                             <th scope="row">1</th>
+                            <td>ORD001</td>
+                            <td>3</td>
+                            <td>Payment</td>
+                            <td>350,150</td>
+                            <td>2024-02-22</td>
+                            <td>---</td>
+                            <td>TRK667788120PH</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
                         </tr>
                     </tbody>
                     <tfoot class="fw-light">

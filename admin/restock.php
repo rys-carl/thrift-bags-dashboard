@@ -9,9 +9,21 @@
                     </div>
                 </div>
 
-                <div class="container-fluid">
+                <div class="container-fluid mt-2" id="pending-restock" style="max-height: 200px; overflow-y: auto;">
                     <ul class="list-unstyled">
                         <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 1 is low on stock.
+                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
+                        </li>
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
+                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
+                        </li>
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
+                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
+                        </li>
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
+                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
+                        </li>
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
                             <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
                         </li>
                         <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
@@ -20,7 +32,7 @@
                     </ul>
                 </div>
 
-                <hr class="border border-dark border-2 mt-4" style="opacity: 1;">
+                <hr class="border border-dark border-2 mt-2" style="opacity: 1;">
             </div>
 
             <div class="content p-4 pt-2">

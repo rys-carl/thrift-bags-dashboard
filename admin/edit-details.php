@@ -27,8 +27,8 @@
 
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="bag-type" class="form-label fw-bold">Bag Type</label>
-                            <input type="text" class="form-control" id="bag-type" name="bag-type" placeholder="Enter bag type">
+                            <label for="category" class="form-label fw-bold">Category</label>
+                            <input type="text" class="form-control" id="category" name="category" placeholder="Enter bag type">
                         </div>
                         <div class="col-md-3">
                             <label for="color" class="form-label fw-bold">Color</label>
@@ -39,8 +39,8 @@
                             <input type="text" class="form-control" id="condition" name="condition" placeholder="Enter condition">
                         </div>
                         <div class="col-md-3">
-                            <label for="status" class="form-label fw-bold">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter status">
+                            <label for="srp" class="form-label fw-bold">SRP</label>
+                            <input type="number" class="form-control" id="srp" name="srp" placeholder="Enter SRP">
                         </div>
                     </div>
 
@@ -53,12 +53,27 @@
 
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="consignor" class="form-label fw-bold">Consignor</label>
-                            <input type="text" class="form-control" id="consignor" name="consignor" placeholder="Enter consignor">
+                            <label for="inventory-gty" class="form-label fw-bold">Inventory Qty</label>
+                            <input type="text" class="form-control" id="inventory-gty" name="inventory-gty" placeholder="Enter inventory city">
                         </div>
                         <div class="col-md-3">
-                            <label for="consignor-price" class="form-label fw-bold">Consignor's Price</label>
-                            <input type="number" class="form-control" id="consignor-price" name="consignor-price" placeholder="Enter consignor's price">
+                            <label for="normal-threshold" class="form-label fw-bold">Normal Threshold Qty</label>
+                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="low-threshold" class="form-label fw-bold">Low Threshold Qty</label>
+                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="product-id" class="form-label fw-bold">Product ID</label>
+                            <input type="number" class="form-control" id="product-id" name="product-id" placeholder="Enter Product ID">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="status" class="form-label fw-bold">Status</label>
+                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter status">
                         </div>
                         <div class="col-md-3">
                             <label for="arrival-date" class="form-label fw-bold">Date of Arrival</label>
@@ -71,28 +86,9 @@
                     </div>
 
                     <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="inventory-city" class="form-label fw-bold">Inventory City</label>
-                            <input type="text" class="form-control" id="inventory-city" name="inventory-city" placeholder="Enter inventory city">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="srp" class="form-label fw-bold">SRP</label>
-                            <input type="number" class="form-control" id="srp" name="srp" placeholder="Enter SRP">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="normal-threshold" class="form-label fw-bold">Normal Threshold Qty</label>
-                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="low-threshold" class="form-label fw-bold">Low Threshold Qty</label>
-                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty">
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="image-upload" class="form-label fw-bold">Image</label>
-                            <input type="file" class="form-control" id="image-upload" name="image-upload">
+                            <input type="file" class="form-control" id="image-upload" name="image-upload[]" multiple>
                         </div>
                     </div>
 
@@ -100,7 +96,7 @@
                         <div class="col text-start">
                             <input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal" value="Delete">
                         </div>
-                        <div class="col text-end">
+                        <div class="col-md col-12 text-end">
                             <a href="./inventory-overview.php" class="btn btn-light me-2">Cancel</a>
                             <!-- NOTE: Change "type=button" to "type=submit" -->
                             <input type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#confirm-modal" value="Save">
@@ -190,5 +186,18 @@
 
         </section>
     </main>
+
+    <script>
+        const imageUpload = document.getElementById('image-upload');
+        
+        imageUpload.addEventListener('change', function() {
+            const files = imageUpload.files;
+            
+            if (files.length !== 4) {
+                alert("Please upload 4 images.");
+                imageUpload.value = '';
+            }
+        });
+    </script>
 
 <?php include '../partials/admin-footer.php'; ?>
