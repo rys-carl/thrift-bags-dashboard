@@ -76,7 +76,7 @@
                             <div class="card p-4 m-3">
                                 <div class="card-info">
                                     <p class="fw-light m-0">Today's Items Sold:</p>
-                                    <p class="fs-2 fw-bold m-0">₱123,456,789.00</p>
+                                    <p class="fs-2 fw-bold m-0">10</p>
                                 </div>
                             </div>
                         </div>

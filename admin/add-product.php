@@ -27,8 +27,8 @@
         
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="bag-type" class="form-label fw-bold">Bag Type</label>
-                            <input type="text" class="form-control" id="bag-type" name="bag-type" placeholder="Enter bag type">
+                            <label for="category" class="form-label fw-bold">Category</label>
+                            <input type="text" class="form-control" id="category" name="category" placeholder="Enter bag type">
                         </div>
                         <div class="col-md-3">
                             <label for="color" class="form-label fw-bold">Color</label>
@@ -39,8 +39,8 @@
                             <input type="text" class="form-control" id="condition" name="condition" placeholder="Enter condition">
                         </div>
                         <div class="col-md-3">
-                            <label for="status" class="form-label fw-bold">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter status">
+                            <label for="material" class="form-label fw-bold">Material</label>
+                            <input type="text" class="form-control" id="material" name="material" placeholder="Enter material">
                         </div>
                     </div>
         
@@ -53,46 +53,27 @@
         
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="consignor" class="form-label fw-bold">Consignor</label>
-                            <input type="text" class="form-control" id="consignor" name="consignor" placeholder="Enter consignor">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="consignor-price" class="form-label fw-bold">Consignor's Price</label>
-                            <input type="number" class="form-control" id="consignor-price" name="consignor-price" placeholder="Enter consignor's price">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="arrival-date" class="form-label fw-bold">Date of Arrival</label>
-                            <input type="date" class="form-control" id="arrival-date" name="arrival-date">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="date-sold" class="form-label fw-bold">Date Sold</label>
-                            <input type="date" class="form-control" id="date-sold" name="date-sold">
-                        </div>
-                    </div>
-        
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="inventory-city" class="form-label fw-bold">Inventory City</label>
-                            <input type="text" class="form-control" id="inventory-city" name="inventory-city" placeholder="Enter inventory city">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="srp" class="form-label fw-bold">SRP</label>
-                            <input type="number" class="form-control" id="srp" name="srp" placeholder="Enter SRP">
+                            <label for="inventory-qty" class="form-label fw-bold">Inventory Qty</label>
+                            <input type="number" class="form-control" id="inventory-qty" name="inventory-qty" placeholder="Enter inventory qty" oninput="updateStatus()">
                         </div>
                         <div class="col-md-3">
                             <label for="normal-threshold" class="form-label fw-bold">Normal Threshold Qty</label>
-                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty">
+                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty" oninput="updateStatus()">
                         </div>
                         <div class="col-md-3">
                             <label for="low-threshold" class="form-label fw-bold">Low Threshold Qty</label>
-                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty">
+                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty" oninput="updateStatus()">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="status" class="form-label fw-bold">Status</label>
+                            <input type="text" class="form-control" id="status" name="status" placeholder="Status" readonly>
                         </div>
                     </div>
         
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="image-upload" class="form-label fw-bold">Image</label>
-                            <input type="file" class="form-control" id="image-upload" name="image-upload">
+                            <label for="image-url" class="form-label fw-bold">Image URL</label>
+                            <input type="url" class="form-control" id="image-url" name="image-url" placeholder="Enter Google Drive image URL">
                         </div>
                     </div>
         

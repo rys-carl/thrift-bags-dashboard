@@ -17,7 +17,8 @@
                                     <option value="inventory">Inventory</option>
                                     <option value="restock-delivery">Restock & Delivery</option>
                                     <option value="cancel">Cancel</option>
-                                    <option value="return-refund">Return & Refund</option>
+                                    <option value="return">Return</option>
+                                    <option value="refund">Refund</option>
                                 </select>
                                 <div class="ms-auto">
                                 <button type="submit" class="btn btn-dark fw-medium ms-3">Generate</button>
@@ -28,8 +29,13 @@
                 </div>        
             </div>
 
+            <?php $selectedReport = $_GET['filter'] ?? ''; ?>
+
             <!-- Sales table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'sales' ? 'block' : 'none' ?>;">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Sales</h1>
+                </div>
                 <table id="sales-table" class="table table-hover fs-6">
                     <thead>
                         <tr>
@@ -76,7 +82,10 @@
 
 
             <!-- Inventory table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'inventory' ? 'block' : 'none' ?>">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Inventory</h1>
+                </div>
                 <table id="inventory-table" class="table table-hover fs-6">
                     <thead>
                         <tr>
@@ -125,7 +134,10 @@
 
 
             <!-- Restock & Delivery table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'restock-delivery' ? 'block' : 'none' ?>;">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Restock/Delivery</h1>
+                </div>
                 <table id="restock-delivery-table" class="table table-hover fs-6">
                     <thead>
                         <tr>
@@ -166,7 +178,10 @@
 
 
             <!-- Cancel table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'cancel' ? 'block' : 'none' ?>;">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Cancel</h1>
+                </div>
                 <table id="cancel-table" class="table table-hover fs-6">
                     <thead>
                         <tr>
@@ -207,7 +222,10 @@
 
 
             <!-- Return table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'return' ? 'block' : 'none' ?>;">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Return</h1>
+                </div>
                 <table id="return-table" class="table table-hover fs-6">
                     <thead>
                         <tr>
@@ -250,7 +268,10 @@
 
 
             <!-- Refund table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: none;">
+            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'refund' ? 'block' : 'none' ?>;">
+                <div class="col-12 col-md-6">
+                    <h1 class="fw-bold">Refund</h1>
+                </div>
                 <table id="refund-table" class="table table-hover fs-6">
                     <thead>
                         <tr>

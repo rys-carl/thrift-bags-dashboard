@@ -39,8 +39,8 @@
                             <input type="text" class="form-control" id="condition" name="condition" placeholder="Enter condition">
                         </div>
                         <div class="col-md-3">
-                            <label for="srp" class="form-label fw-bold">SRP</label>
-                            <input type="number" class="form-control" id="srp" name="srp" placeholder="Enter SRP">
+                            <label for="material" class="form-label fw-bold">Material</label>
+                            <input type="number" class="form-control" id="material" name="material" placeholder="Enter material">
                         </div>
                     </div>
 
@@ -53,42 +53,27 @@
 
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="inventory-gty" class="form-label fw-bold">Inventory Qty</label>
-                            <input type="text" class="form-control" id="inventory-gty" name="inventory-gty" placeholder="Enter inventory city">
+                            <label for="inventory-qty" class="form-label fw-bold">Inventory Qty</label>
+                            <input type="number" class="form-control" id="inventory-qty" name="inventory-qty" placeholder="Enter inventory qty" oninput="updateStatus()">
                         </div>
                         <div class="col-md-3">
                             <label for="normal-threshold" class="form-label fw-bold">Normal Threshold Qty</label>
-                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty">
+                            <input type="number" class="form-control" id="normal-threshold" name="normal-threshold" placeholder="Enter normal threshold qty" oninput="updateStatus()">
                         </div>
                         <div class="col-md-3">
                             <label for="low-threshold" class="form-label fw-bold">Low Threshold Qty</label>
-                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty">
+                            <input type="number" class="form-control" id="low-threshold" name="low-threshold" placeholder="Enter low threshold qty" oninput="updateStatus()">
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="product-id" class="form-label fw-bold">Product ID</label>
-                            <input type="number" class="form-control" id="product-id" name="product-id" placeholder="Enter Product ID">
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
                         <div class="col-md-3">
                             <label for="status" class="form-label fw-bold">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter status">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="arrival-date" class="form-label fw-bold">Date of Arrival</label>
-                            <input type="date" class="form-control" id="arrival-date" name="arrival-date">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="date-sold" class="form-label fw-bold">Date Sold</label>
-                            <input type="date" class="form-control" id="date-sold" name="date-sold">
+                            <input type="text" class="form-control" id="status" name="status" placeholder="Status" readonly>
                         </div>
                     </div>
 
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="image-upload" class="form-label fw-bold">Image</label>
-                            <input type="file" class="form-control" id="image-upload" name="image-upload[]" multiple>
+                            <label for="image-url" class="form-label fw-bold">Image URL</label>
+                            <input type="url" class="form-control" id="image-url" name="image-url" placeholder="Enter Google Drive image URL">
                         </div>
                     </div>
 
@@ -186,18 +171,5 @@
 
         </section>
     </main>
-
-    <script>
-        const imageUpload = document.getElementById('image-upload');
-        
-        imageUpload.addEventListener('change', function() {
-            const files = imageUpload.files;
-            
-            if (files.length !== 4) {
-                alert("Please upload 4 images.");
-                imageUpload.value = '';
-            }
-        });
-    </script>
 
 <?php include '../partials/admin-footer.php'; ?>
