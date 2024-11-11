@@ -37,7 +37,7 @@
                         <div class="col-md-6">
                             <div class="card p-2">
                                 <div class="card-info">
-                                    <p class="fw-light m-0">Total Inventory SRP:</p>
+                                    <p class="fw-light m-0">Total Inventory Price:</p>
                                     <p class="fs-2 fw-bold m-0">₱128,264,968</p>
                                 </div>
                             </div>

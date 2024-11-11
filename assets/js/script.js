@@ -5,9 +5,9 @@ function updateStatus() {
     const lowThreshold = parseInt(document.getElementById('low-threshold').value) || 0;
     const statusField = document.getElementById('status');
 
-    if (inventoryQty <= lowThreshold) {
+    if (inventoryQty === 0) {
         statusField.value = "Out of Stock";
-    } else if (inventoryQty <= normalThreshold) {
+    } else if (inventoryQty <= lowThreshold) {
         statusField.value = "Low Stock";
     } else {
         statusField.value = "In Stock";
