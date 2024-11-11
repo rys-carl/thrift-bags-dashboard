@@ -56,7 +56,7 @@
                     </li>
 
                     <li class="dropdown sidebar-item">
-                        <a href="../admin/orders.php" class="text-dark d-flex align-items-center" style="width: 100%;">
+                        <a href=" " class="text-dark d-flex align-items-center" style="width: 100%;">
                             <i class="fa-solid fa-cart-shopping mx-2" style="color: #000000;"></i>Orders
                         </a>
                     </li>

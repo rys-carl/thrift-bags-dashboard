@@ -69,11 +69,13 @@
                 <div class="modal-body pt-0">
 
                     <!-- Placeholder details -->
-                    <p class="my-0" id="customer-first-name"><strong>First Name:</strong> Jane</p>
-                    <p class="my-0" id="customer-last-name"><strong>Last Name:</strong> Doe</p>
-                    <p class="my-0" id="customer-email"><strong>Email:</strong> janedoe@email.com</p>
-                    <p class="my-0" id="customer-phone"><strong>Phone Number:</strong> --- </p>
-                    <p class="my-0" id="customer-date-created"><strong>Date Created:</strong> 2024-10-14</p>
+                    <div class="container">
+                        <p class="my-0" id="customer-first-name"><strong>First Name:</strong> Jane</p>
+                        <p class="my-0" id="customer-last-name"><strong>Last Name:</strong> Doe</p>
+                        <p class="my-0" id="customer-email"><strong>Email:</strong> janedoe@email.com</p>
+                        <p class="my-0" id="customer-phone"><strong>Phone Number:</strong> --- </p>
+                        <p class="my-0" id="customer-date-created"><strong>Date Created:</strong> 2024-10-14</p>
+                    </div>
 
                     <!-- Placeholder table -->
                     <h5 class="mt-4">Past Orders:</h5>
@@ -87,7 +89,7 @@
                                     <th scope="col">Total Amount</th>
                                     <th scope="col">Order Date</th>
                                     <th scope="col">Delivered Date</th>
-                                    <th scope="col">Delivered Update</th>
+                                    <th scope="col">Deliver Status</th>
                                 </tr>
                             </thead>
                             <tbody id="past-orders">

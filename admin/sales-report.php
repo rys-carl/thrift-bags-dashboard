@@ -5,7 +5,7 @@
             <p class="fw-light fs-4 mb-0">Report Generated: November 10, 2024</p>
         </div>
 
-        <p class="fw-bold mt-1 mb-2 fs-2">Sales Overview:</p>
+        <p class="fw-bold mt-2 mb-0 fs-2">Sales Overview:</p>
         <div class="container-fluid px-0">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-3">

@@ -59,7 +59,7 @@
                             <th scope="col">DELIVERY DATE</th>
                             <th scope="col">STATUS</th>
                             <th scope="col">REFERENCE NO.</th>
-                            <!-- <th scope="col">ACTION</th> -->
+                            <th scope="col">ACTION</th>
                         </tr>
                     </thead>
                     <tbody class="fw-light">
@@ -71,12 +71,12 @@
                             <td>2024-02-22</td>
                             <td>Delivered</td>
                             <td>REF123456</td>
-                            <!-- <td><a href=" " class="text-black fw-semibold">Edit</a></td> -->
+                            <td class="text-black fw-semibold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" style="cursor: pointer;">Edit</a></td>
                         </tr>
                     </tbody>
                     <tfoot class="fw-light">
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <div class="d-flex justify-content-between small">
                                     <span>Showing 1 to 1 of 1 results</span>
                                     <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
@@ -87,7 +87,7 @@
                 </table>
             </div>
 
-            <!-- Restock Modal -->
+            <!-- Restock Edit modal -->
             <div class="custom-modal modal fade" id="restock-edit-modal" tabindex="-1" aria-labelledby="restockModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content p-1">
@@ -98,7 +98,7 @@
                             <form action=" " method="post">
                                 <div class="mb-2 d-flex align-items-baseline">
                                     <label for="product-name" class="form-label fw-bold me-2">Product Name:</label>
-                                    <span id="product-name" class="item-name">Classic Flap Bag</span>
+                                    <span id="product-name" class="item-name">Product Name</span>
                                 </div>
                                 <div class="mb-2 d-flex align-items-center">
                                     <label for="quantity" class="form-label fw-bold me-2">Quantity:</label>
