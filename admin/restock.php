@@ -17,17 +17,12 @@
                         <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
                             <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
                         </li>
-                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 3 is low on stock.
                             <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
                         </li>
-                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
+                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 4 is low on stock.
                             <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
                         </li>
-                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
-                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
-                        </li>
-                        <li class="list-group-item list-group-item-secondary rounded-pill my-2 p-2 px-4 d-flex justify-content-between align-items-center">Product 2 is low on stock.
-                            <input type="button" class="btn btn-success btn-sm fw-semibold" data-bs-toggle="modal" data-bs-target="#restock-edit-modal" value="RESTOCK">
                         </li>
                     </ul>
                 </div>
@@ -57,31 +52,31 @@
                 <table class="table table-hover fs-6">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">RESTOCK ID</th>
                             <th scope="col">PRODUCT ID</th>
                             <th scope="col">ADMIN ID</th>
                             <th scope="col">QUANTITY</th>
                             <th scope="col">DELIVERY DATE</th>
                             <th scope="col">STATUS</th>
                             <th scope="col">REFERENCE NO.</th>
-                            <th scope="col">ACTION</th>
+                            <!-- <th scope="col">ACTION</th> -->
                         </tr>
                     </thead>
                     <tbody class="fw-light">
                         <tr>
-                            <th scope="row">1</th>
+                            <td>1</td>
                             <td>1001</td>
                             <td>3</td>
                             <td>1</td>
                             <td>2024-02-22</td>
                             <td>Delivered</td>
                             <td>REF123456</td>
-                            <td><a href=" " class="text-black fw-semibold">Edit</a></td>
+                            <!-- <td><a href=" " class="text-black fw-semibold">Edit</a></td> -->
                         </tr>
                     </tbody>
                     <tfoot class="fw-light">
                         <tr>
-                            <td colspan="8">
+                            <td colspan="7">
                                 <div class="d-flex justify-content-between small">
                                     <span>Showing 1 to 1 of 1 results</span>
                                     <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>

@@ -157,7 +157,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content p-3">
                         <div class="modal-header justify-content-center pb-1" style="border-bottom: none;">
-                            <h5 class="modal-title text-success text-center fs-3 fw-light" id="editSuccessfulModalLabel">PRODUCT SAVED</h5>
+                            <h5 class="modal-title text-success text-center fs-3 fw-light" id="editSuccessfulModalLabel">CHANGES SAVED</h5>
                         </div>
                         <div class="modal-body text-center">
                             The product has been edited successfully!

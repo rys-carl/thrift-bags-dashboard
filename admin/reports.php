@@ -8,20 +8,56 @@
                         <h1 class="fw-bold mb-0">Reports</h1>
                     </div>
 
+                    <div class="col-12 col-md-6 d-flex justify-content-md-end justify-content-start mt-2 mt-md-0">
+                        <form action=" " method="get">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle btn-sm border border-dark-subtle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Items per page</button>
+                                <ul class="dropdown-menu border border-dark-subtle" aria-labelledby="dropdownMenuButton">
+                                    <li><button class="dropdown-item" type="submit" name="items-filter" value="10-items">10 items per page</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="items-filter" value="15-items">15 items per page</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="items-filter" value="20-items">20 items per page</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="items-filter" value="25-items">25 items per page</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="items-filter" value="30-items">30 items per page</button></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="mt-4">
+                        <form action=" " method="get">
+                            <div class="dropdown mb-3">
+                                <button class="btn dropdown-toggle btn-sm border border-dark-subtle fw-bold" style="width: 100px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Scope</button>
+                                <ul class="dropdown-menu border border-dark-subtle" aria-labelledby="dropdownMenuButton">
+                                    <li><button class="dropdown-item" type="submit" name="days-filter" value="7-days">7 days ago</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="days-filter" value="30-days">30 days ago</button></li>
+                                    <li><button class="dropdown-item" type="submit" name="days-filter" value="90-days">90 days ago</button></li>
+                                    <li><button class="dropdown-item" type="button" id="custom-btn" name="days-filter" value="custom">Custom</button></li>
+                                </ul>
+                            </div>
+
+                            <div id="custom-dates" style="display: none;">
+                                <div class="mb-3 d-flex gap-2">
+                                    <div>
+                                        <label for="start-date" class="form-label small fw-bold">Start Date:</label>
+                                        <input type="date" class="form-control form-control-sm" id="start-date" name="start-date">
+                                    </div>
+                                    <div>
+                                        <label for="end-date" class="form-label small fw-bold">End Date:</label>
+                                        <input type="date" class="form-control form-control-sm" id="end-date" name="end-date">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <form action="" method="get">
-                            <div class="input-group mb-3">
-                                <select class="form-select" name="filter" aria-label="Select filter">
+                            <div class="input-group">
+                                <select class="form-select fw-bold border border-dark-subtle" name="filter" aria-label="Select filter">
                                     <option value="" selected>Choose Report Type</option>
-                                    <option value="sales">Sales</option>
                                     <option value="inventory">Inventory</option>
-                                    <option value="restock-delivery">Restock & Delivery</option>
-                                    <option value="cancel">Cancel</option>
-                                    <option value="return">Return</option>
-                                    <option value="refund">Refund</option>
+                                    <option value="sales">Sales</option>
                                 </select>
                                 <div class="ms-auto">
-                                <button type="submit" class="btn btn-dark fw-medium ms-3">Generate</button>
+                                    <button type="submit" class="btn btn-dark fw-medium ms-3">Generate</button>
                                 </div>
                             </div>
                         </form>
@@ -29,284 +65,10 @@
                 </div>        
             </div>
 
-            <?php $selectedReport = $_GET['filter'] ?? ''; ?>
-
-            <!-- Sales table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'sales' ? 'block' : 'none' ?>;">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Sales</h1>
-                </div>
-                <table id="sales-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">ORDER ID</th>
-                            <th scope="col">ADMIN ID</th>
-                            <th scope="col">TRANSACTION TYPE</th>
-                            <th scope="col">TOTAL AMOUNT</th>
-                            <th scope="col">TRANSACTION DATE</th>
-                            <th scope="col">REASON</th>
-                            <th scope="col">TRACKING NUMBER</th>
-                            <th scope="col">RETURN DATE</th>
-                            <th scope="col">REFUND METHOD</th>
-                            <th scope="col">REFUND REFERENCE NUMBER</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>ORD001</td>
-                            <td>3</td>
-                            <td>Payment</td>
-                            <td>350,150</td>
-                            <td>2024-02-22</td>
-                            <td>---</td>
-                            <td>TRK667788120PH</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="11">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-
-            <!-- Inventory table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'inventory' ? 'block' : 'none' ?>">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Inventory</h1>
-                </div>
-                <table id="inventory-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">PRODUCT NAME</th>
-                            <th scope="col">CATEGORY</th>
-                            <th scope="col">BRAND</th>
-                            <th scope="col">PRICE</th>
-                            <th scope="col">QUANTITY</th>
-                            <th scope="col">CONDITION</th>
-                            <th scope="col">MATERIAL</th>
-                            <th scope="col">DESCRIPTION</th>
-                            <th scope="col">SKU</th>
-                            <th scope="col">UPC</th>
-                            <th scope="col">COLOR</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mini Frances Leather Handbag</td>
-                            <td>Shoulder Bag</td>
-                            <td>Chanel</td>
-                            <td>350,000</td>
-                            <td>3</td>
-                            <td>A</td>
-                            <td>Leather</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sequi porro deserunt laudantium cum quis minima, unde dolorum asperiores accusamus ipsa sed debitis delectus magnam veritatis animi perspiciatis aliquam? Itaque!</td>
-                            <td>CF-1001</td>
-                            <td>123456789012</td>
-                            <td>Black</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="12">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-
-            <!-- Restock & Delivery table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'restock-delivery' ? 'block' : 'none' ?>;">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Restock/Delivery</h1>
-                </div>
-                <table id="restock-delivery-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">PRODUCT ID</th>
-                            <th scope="col">ADMIN ID</th>
-                            <th scope="col">QUANTITY</th>
-                            <th scope="col">DATE</th>
-                            <th scope="col">DELIVERY DATE</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">REFERENCE NUMBER</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1001</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>2024-02-22</td>
-                            <td>2024-02-22</td>
-                            <td>Delivered</td>
-                            <td>REF123456</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="8">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-
-            <!-- Cancel table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'cancel' ? 'block' : 'none' ?>;">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Cancel</h1>
-                </div>
-                <table id="cancel-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">ORDER ID</th>
-                            <th scope="col">ADMIN ID</th>
-                            <th scope="col">REASON</th>
-                            <th scope="col">CANCEL STATUS</th>
-                            <th scope="col">REQUEST DATE</th>
-                            <th scope="col">APPROVAL DATE</th>
-                            <th scope="col">APPROVED BY</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1001</td>
-                            <td>3</td>
-                            <td>Not Satisfied</td>
-                            <td>---</td>
-                            <td>2024-02-22</td>
-                            <td>2024-02-22</td>
-                            <td>John Smith</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="8">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-
-            <!-- Return table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'return' ? 'block' : 'none' ?>;">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Return</h1>
-                </div>
-                <table id="return-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">ORDER ID</th>
-                            <th scope="col">ADMIN ID</th>
-                            <th scope="col">REASON</th>
-                            <th scope="col">RETURN STATUS</th>
-                            <th scope="col">REQUEST DATE</th>
-                            <th scope="col">PICKUP DATE</th>
-                            <th scope="col">DELIVERY DATE</th>
-                            <th scope="col">DELIVERED DATE</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1001</td>
-                            <td>3</td>
-                            <td>Not Satisfied</td>
-                            <td>---</td>
-                            <td>2024-02-22</td>
-                            <td>2024-02-22</td>
-                            <td>2024-02-22</td>
-                            <td>2024-02-22</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="9">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-
-            <!-- Refund table format -->
-            <div class="content table-responsive p-4 pt-2" style="display: <?= $selectedReport === 'refund' ? 'block' : 'none' ?>;">
-                <div class="col-12 col-md-6">
-                    <h1 class="fw-bold">Refund</h1>
-                </div>
-                <table id="refund-table" class="table table-hover fs-6">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">REFUND ID</th>
-                            <th scope="col">ADMIN ID</th>
-                            <th scope="col">AMOUNT</th>
-                            <th scope="col">REFUND DATE</th>
-                            <th scope="col">METHOD</th>
-                            <th scope="col">REFUND STATUS</th>
-                        </tr>
-                    </thead>
-                    <tbody class="fw-light">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1001</td>
-                            <td>3</td>
-                            <td>000</td>
-                            <td>2024-02-22</td>
-                            <td>Online Banking</td>
-                            <td>---</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="fw-light">
-                        <tr>
-                            <td colspan="7">
-                                <div class="d-flex justify-content-between small">
-                                    <span>Showing 1 to 1 of 1 results</span>
-                                    <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+            <?php $reportType = isset($_GET['filter']) ? $_GET['filter'] : ''; ?>
+            
+            <?php include './inventory-report.php'; ?>
+            <?php include './sales-report.php'; ?>
         </section>
     </main>
 

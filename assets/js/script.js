@@ -13,3 +13,15 @@ function updateStatus() {
         statusField.value = "In Stock";
     }
 }
+
+// for Custom option under reports.php
+const customBtn = document.getElementById('custom-btn');
+const customDatesDiv = document.getElementById('custom-dates');
+
+customBtn.addEventListener('click', function () {
+    if (customDatesDiv.style.display === 'none') {
+        customDatesDiv.style.display = 'block';
+    } else {
+        customDatesDiv.style.display = 'none';
+    }
+});
