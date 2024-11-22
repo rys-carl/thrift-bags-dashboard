@@ -59,16 +59,23 @@ $inventory_stmt->execute();
 $inventory_result = $inventory_stmt->get_result();
 $inventory_metrics = $inventory_result->fetch_assoc();
 
-// Fetch monthly quota
-$quota_stmt = $conn->prepare("SELECT SUM(total_amount) AS current_sales FROM orders WHERE DATE_FORMAT(order_date, '%Y-%m') = ?");
-$current_month = date('Y-m');
-$quota_stmt->bind_param("s", $current_month);
+// Fetch monthly quota and current sales
+$current_year = date('Y');
+$current_month = date('n');
+$quota_stmt = $conn->prepare("
+    SELECT mq.quota_amount, COALESCE(SUM(o.total_amount), 0) AS current_sales
+    FROM monthly_quota mq
+    LEFT JOIN orders o ON YEAR(o.order_date) = mq.year AND MONTH(o.order_date) = mq.month
+    WHERE mq.year = ? AND mq.month = ?
+    GROUP BY mq.quota_amount
+");
+$quota_stmt->bind_param("ii", $current_year, $current_month);
 $quota_stmt->execute();
 $quota_result = $quota_stmt->get_result();
-$current_sales = $quota_result->fetch_assoc()['current_sales'];
+$quota_data = $quota_result->fetch_assoc();
 
-// Since there's no monthly_quota table, we'll use a fixed value for demonstration
-$monthly_quota = 1000000; // 1 million
+$monthly_quota = $quota_data['quota_amount'] ?? 0;
+$current_sales = $quota_data['current_sales'] ?? 0;
 
 $conn->close();
 ?>
@@ -154,10 +161,11 @@ $conn->close();
                                     ₱<?php echo number_format($monthly_quota, 2); ?></p>
                                 <div class="progress mt-2">
                                     <div class="progress-bar" role="progressbar"
-                                        style="width: <?php echo min(($current_sales / $monthly_quota) * 100, 100); ?>%;"
-                                        aria-valuenow="<?php echo ($current_sales / $monthly_quota) * 100; ?>"
+                                        style="width: <?php echo $monthly_quota > 0 ? min(($current_sales / $monthly_quota) * 100, 100) : 0; ?>%;"
+                                        aria-valuenow="<?php echo $monthly_quota > 0 ? ($current_sales / $monthly_quota) * 100 : 0; ?>"
                                         aria-valuemin="0" aria-valuemax="100">
-                                        <?php echo round(($current_sales / $monthly_quota) * 100, 1); ?>%</div>
+                                        <?php echo $monthly_quota > 0 ? round(($current_sales / $monthly_quota) * 100, 1) : 0; ?>%
+                                    </div>
                                 </div>
                             </div>
                         </div>
