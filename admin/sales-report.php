@@ -1,8 +1,69 @@
-<div id="sales-option" style="<?php echo ($reportType == 'sales') ? 'display: block;' : 'display: none;'; ?>">
+<?php
+if ($reportType == 'sales') {
+    // Fetch sales overview
+    $overviewQuery = "SELECT 
+        COUNT(*) as total_orders,
+        SUM(total_amount) as total_sales,
+        SUM(shipping_cost) as total_shipping_cost,
+        SUM(CASE WHEN free_shipping = 1 THEN 1 ELSE 0 END) as free_shipping_orders,
+        SUM(sub_amount) as total_revenue,
+        SUM((SELECT SUM(quantity) FROM order_items WHERE order_items.order_id = orders.order_id)) as total_quantity_sold,
+        SUM(CASE WHEN order_status = 'cancelled' THEN 1 ELSE 0 END) as total_cancelled,
+        SUM(CASE WHEN order_status = 'return/refund' THEN 1 ELSE 0 END) as total_return_refund
+    FROM orders
+    WHERE order_date BETWEEN ? AND ?";
+    $stmt = $conn->prepare($overviewQuery);
+    $stmt->bind_param("ss", $startDate, $endDate);
+    $stmt->execute();
+    $overviewResult = $stmt->get_result();
+    $overview = $overviewResult->fetch_assoc();
+
+    // Fetch sales breakdown by product
+    $salesBreakdownQuery = "SELECT 
+        p.product_id, p.name, SUM(oi.quantity) as quantity_sold, 
+        p.price as unit_price, SUM(oi.item_price) as total_amount
+    FROM order_items oi
+    JOIN products p ON oi.product_id = p.product_id
+    JOIN orders o ON oi.order_id = o.order_id
+    WHERE o.order_date BETWEEN ? AND ?
+    GROUP BY p.product_id
+    LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($salesBreakdownQuery);
+    $stmt->bind_param("ssii", $startDate, $endDate, $itemsPerPage, $offset);
+    $stmt->execute();
+    $salesBreakdownResult = $stmt->get_result();
+
+    // Fetch transaction summary
+    $transactionSummaryQuery = "SELECT 
+        transaction_type, COUNT(*) as count, SUM(transac_total_amount) as total_amount
+    FROM transactions
+    WHERE transac_date BETWEEN ? AND ?
+    GROUP BY transaction_type
+    LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($transactionSummaryQuery);
+    $stmt->bind_param("ssii", $startDate, $endDate, $itemsPerPage, $offset);
+    $stmt->execute();
+    $transactionSummaryResult = $stmt->get_result();
+
+    // Fetch return/refund details
+    $returnRefundQuery = "SELECT 
+        o.order_id, t.reason, t.return_date, t.transac_total_amount as refund_amount
+    FROM transactions t
+    JOIN orders o ON t.order_id = o.order_id
+    WHERE t.transaction_type IN ('return', 'refund') AND t.transac_date BETWEEN ? AND ?
+    LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($returnRefundQuery);
+    $stmt->bind_param("ssii", $startDate, $endDate, $itemsPerPage, $offset);
+    $stmt->execute();
+    $returnRefundResult = $stmt->get_result();
+?>
+
+<div id="sales-option">
     <div class="content p-4 pt-0 mt-0">
         <div class="col-12 col-md-6">
-            <p class="fw-bold fs-2 mb-0">October 1, 2024 - October 31, 2024</p>
-            <p class="fw-light fs-4 mb-0">Report Generated: November 10, 2024</p>
+            <p class="fw-bold fs-2 mb-0"><?php echo date('F j, Y', strtotime($startDate)); ?> -
+                <?php echo date('F j, Y', strtotime($endDate)); ?></p>
+            <p class="fw-light fs-4 mb-0">Report Generated: <?php echo date('F j, Y'); ?></p>
         </div>
 
         <p class="fw-bold mt-2 mb-0 fs-2">Sales Overview:</p>
@@ -12,7 +73,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Orders:</p>
-                            <p class="fs-2 fw-bold m-0">4</p>
+                            <p class="fs-2 fw-bold m-0"><?php echo $overview['total_orders']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -20,7 +81,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Sales:</p>
-                            <p class="fs-2 fw-bold m-0">₱135,000.00</p>
+                            <p class="fs-2 fw-bold m-0">₱<?php echo number_format($overview['total_sales'], 2); ?></p>
                         </div>
                     </div>
                 </div>
@@ -28,7 +89,8 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Shipping Cost:</p>
-                            <p class="fs-2 fw-bold m-0">₱300</p>
+                            <p class="fs-2 fw-bold m-0">
+                                ₱<?php echo number_format($overview['total_shipping_cost'], 2); ?></p>
                         </div>
                     </div>
                 </div>
@@ -36,7 +98,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Free Shipping Orders:</p>
-                            <p class="fs-2 fw-bold m-0">1</p>
+                            <p class="fs-2 fw-bold m-0"><?php echo $overview['free_shipping_orders']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -45,8 +107,8 @@
                 <div class="col-md-12 col-sm-12 col-lg-3">
                     <div class="card p-4 m-3">
                         <div class="card-info">
-                            <p class="fw-light m-0">Total Reveneu:</p>
-                            <p class="fs-2 fw-bold m-0">₱160,000</p>
+                            <p class="fw-light m-0">Total Revenue:</p>
+                            <p class="fs-2 fw-bold m-0">₱<?php echo number_format($overview['total_revenue'], 2); ?></p>
                         </div>
                     </div>
                 </div>
@@ -54,7 +116,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Quantity Sold:</p>
-                            <p class="fs-2 fw-bold m-0">5</p>
+                            <p class="fs-2 fw-bold m-0"><?php echo $overview['total_quantity_sold']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +124,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Cancel:</p>
-                            <p class="fs-2 fw-bold m-0">0</p>
+                            <p class="fs-2 fw-bold m-0"><?php echo $overview['total_cancelled']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +132,7 @@
                     <div class="card p-4 m-3">
                         <div class="card-info">
                             <p class="fw-light m-0">Total Return/Refund:</p>
-                            <p class="fs-2 fw-bold m-0">1</p>
+                            <p class="fs-2 fw-bold m-0"><?php echo $overview['total_return_refund']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -93,24 +155,16 @@
                 </tr>
             </thead>
             <tbody class="fw-light">
+                <?php while ($row = $salesBreakdownResult->fetch_assoc()): ?>
                 <tr>
-                    <td>1001</td>
-                    <td>Mini Frances Leather Handbag</td>
-                    <td>3</td>
-                    <td>350,000</td>
-                    <td>350,000</td>
+                    <td><?php echo $row['product_id']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['quantity_sold']; ?></td>
+                    <td>₱<?php echo number_format($row['unit_price'], 2); ?></td>
+                    <td>₱<?php echo number_format($row['total_amount'], 2); ?></td>
                 </tr>
+                <?php endwhile; ?>
             </tbody>
-            <tfoot class="fw-light">
-                <tr>
-                    <td colspan="5">
-                        <div class="d-flex justify-content-between small">
-                            <span>Showing 1 to 1 of 1 results</span>
-                            <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 
@@ -122,27 +176,19 @@
             <thead>
                 <tr>
                     <th scope="col">TRANSACTION TYPE</th>
-                    <th scope="col">NAME OF TRANSACTION</th>
+                    <th scope="col">COUNT</th>
                     <th scope="col">TOTAL AMOUNT</th>
                 </tr>
             </thead>
             <tbody class="fw-light">
+                <?php while ($row = $transactionSummaryResult->fetch_assoc()): ?>
                 <tr>
-                    <td>Payment</td>
-                    <td>---</td>
-                    <td>₱ 200,000</td>
+                    <td><?php echo ucfirst($row['transaction_type']); ?></td>
+                    <td><?php echo $row['count']; ?></td>
+                    <td>₱<?php echo number_format($row['total_amount'], 2); ?></td>
                 </tr>
+                <?php endwhile; ?>
             </tbody>
-            <tfoot class="fw-light">
-                <tr>
-                    <td colspan="3">
-                        <div class="d-flex justify-content-between small">
-                            <span>Showing 1 to 1 of 1 results</span>
-                            <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 
@@ -160,23 +206,16 @@
                 </tr>
             </thead>
             <tbody class="fw-light">
+                <?php while ($row = $returnRefundResult->fetch_assoc()): ?>
                 <tr>
-                    <td>ORD010</td>
-                    <td>Changed my mind</td>
-                    <td>2024-10-30</td>
-                    <td>₱ 200,000</td>
+                    <td><?php echo $row['order_id']; ?></td>
+                    <td><?php echo $row['reason']; ?></td>
+                    <td><?php echo $row['return_date']; ?></td>
+                    <td>₱<?php echo number_format($row['refund_amount'], 2); ?></td>
                 </tr>
+                <?php endwhile; ?>
             </tbody>
-            <tfoot class="fw-light">
-                <tr>
-                    <td colspan="4">
-                        <div class="d-flex justify-content-between small">
-                            <span>Showing 1 to 1 of 1 results</span>
-                            <span> Next <i class="fa-solid fa-chevron-right fa-2xs" style="color: #000000;"></i></span>
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </div>
+<?php } ?>
